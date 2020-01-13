@@ -5,13 +5,8 @@ class FlightsController < ApplicationController
 
   def create
     passenger = Passenger.find(params[:passenger_id])
-    flight = passenger.flights.create(flight_params)
+    flight = Flight.where(number: params[:number])
+    passenger.flights << flight
     redirect_to "/passengers/#{passenger.id}"
-  end
-
-  private
-
-  def flight_params
-    params.permit(:number)
   end
 end

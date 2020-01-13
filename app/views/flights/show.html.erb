@@ -1,14 +1,22 @@
-<h1>Flight <%= @flight.number %></h1>
+<center>
+  <h1>Flight <%= @flight.number %></h1>
 
-<p>Flight Number: <%= @flight.number %></p>
-<p>Flight Date: <%= @flight.date %></p>
-<p>Flight Time: <%= @flight.time %></p>
-<p>Flight Departure City: <%= @flight.departure_city %></p>
-<p>Flight Arrival City: <%= @flight.arrival_city %></p>
-<p>Belongs to <%= @flight.airline.name %> Airline</p>
+  <p>Flight Number: <%= @flight.number %></p>
+  <p>Flight Date: <%= @flight.date %></p>
+  <p>Flight Time: <%= @flight.time %></p>
+  <p>Flight Departure City: <%= @flight.departure_city %></p>
+  <p>Flight Arrival City: <%= @flight.arrival_city %></p>
+  <p>Belongs to <%= @flight.airline.name %> Airline</p>
 
-<section id= 'passengers'>
-  <% @flight.passengers.each do |passenger| %>
-    <p><%= passenger.name %></p>
-  <% end %>
-</section>
+  <h2>Passengers on <%= @flight.number %></h2>
+  <section id= 'passengers'>
+    <ul>
+      <% @flight.passengers.each do |passenger| %>
+      <li><%= passenger.name %></li>
+      <% end %>
+    </ul>
+  </section>
+
+  <p>Number of Minors: <%= @flight.minor_count %></p>
+  <p>Number of Adults: <%= @flight.adult_count %></p>
+</center>

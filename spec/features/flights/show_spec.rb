@@ -33,4 +33,21 @@ RSpec.describe "flight show page" do
       expect(page).to have_content(passenger_3.name)
     end
   end
+
+  it "I see the number of minors and the number of adults on the flight" do
+    southwest = Airline.create(name: "Southwest")
+
+    southwest_1 = southwest.flights.create(number: "SW1", date: "10/10/20", time: "1300", departure_city: "Minneapolis", arrival_city: "Nashville")
+
+    passenger_1 = southwest_1.passengers.create!(name: "Mike Dao", age: 5)
+    passenger_2 = southwest_1.passengers.create!(name: "Meg Stang", age: 25)
+    passenger_3 = southwest_1.passengers.create!(name: "Sal Espinosa", age: 17)
+    passenger_4 = southwest_1.passengers.create!(name: "Megan McMahon", age: 18)
+    passenger_5 = southwest_1.passengers.create!(name: "Ian Douglas", age: 32)
+
+    visit "/flights/#{southwest_1.id}"
+    
+    expect(page).to have_content("Number of Minors: 2")
+    expect(page).to have_content("Number of Adults: 3")
+  end
 end
